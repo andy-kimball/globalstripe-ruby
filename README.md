@@ -6,11 +6,13 @@ using CRDB.
 ## How to Setup
 
 *Local cluster*
+
 ./cockroach start --insecure --locality="cloud=aws,region=us-east-2,zone=us-east-2a" --store=node1 --listen-addr=localhost:26257 --http-addr=localhost:8080
 ./cockroach start --insecure --locality="cloud=aws,region=eu-west-3,zone=eu-west-3a" --store=node2 --listen-addr=localhost:26258 --http-addr=localhost:8081 --join=localhost:26257
 ./cockroach start --insecure --locality="cloud=aws,region=ap-northeast-2,zone=ap-northeast-2a" --store=node3 --listen-addr=localhost:26259 --http-addr=localhost:8082 --join=localhost:26257
 
 *Cloud cluster (mimics future entry-level MSO cluster)*
+
 export CLUSTER=andyk-test
 roachprod create $CLUSTER -n 3 --aws-zones="us-east-2a,eu-west-3a,ap-northeast-2a" --geo --clouds=aws
 roachprod stage $CLUSTER cockroach
